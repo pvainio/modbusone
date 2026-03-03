@@ -50,7 +50,7 @@ func (s *rtuPacketReader) Read(p []byte) (int, error) {
 			// time.Sleep(time.Duration(rand.Int63n(int64(time.Second / 10))))
 			n, err := s.r.Read(p[read:])
 			now := time.Now()
-			if read != 0 {
+			if read > 0 {
 				cutoffDuration := GetPacketCutoffDurationFromSerialContext(s.r, n)
 				readDuration := now.Sub(s.lastReadAt)
 				if readDuration > cutoffDuration {
